@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    generate-ddl: true
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+        format_sql: true
+        query:
+          fail_on_pagination_over_collection_fetch: true
+    open-in-view: false
+server:
+  port: 8087

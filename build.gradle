@@ -1,0 +1,59 @@
+plugins {
+    id 'org.springframework.boot' version '2.3.10.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.tdtin'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    set('springCloudVersion', "Hoxton.SR11")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+dependencies {
+    // for support java 8 Date time
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation('org.postgresql:postgresql')
+    implementation 'org.apache.commons:commons-collections4:4.0'
+    implementation 'org.apache.commons:commons-lang3:3.9'
+
+    //to Support @Nullable
+    implementation 'com.google.code.findbugs:annotations:3.0.1'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'com.h2database:h2:1.4.200'
+    testImplementation 'com.github.javafaker:javafaker:1.0.2'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    /*MAPSTRUCT*/
+    implementation 'org.mapstruct:mapstruct:1.4.1.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.1.Final'
+
+}
+
+test {
+    useJUnitPlatform()
+}
+
+apply plugin: 'checkstyle'
+checkstyle {
+    toolVersion '8.44'
+    configFile file("config/checkstyle/checkstyle.xml")
+    configProperties = [samedir: "${rootDir}/config/checkstyle"]
+}
