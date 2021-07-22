@@ -64,6 +64,11 @@ public interface UserRepository extends JpaRepository<User, UserId>, SearchSpeci
 
 ### Make a query
 ```java
+import static com.tdtin.springdatacommon.repository.search.ComparableOperation.*;
+import static com.tdtin.springdatacommon.repository.search.BasicOperation.*;
+```
+
+```java
 UserSpecification validFromQuery = new UserSpecification("validFrom", ComparableOperation.GREATER_THAN_OR_EQUAL_TO, OffsetDateTime.now());
 
 UserSpecification usernameQuery = new UserSpecification("username", BasicOperation.EQUAL_TO, "micheal");
