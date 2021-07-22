@@ -69,9 +69,9 @@ import static com.tdtin.springdatacommon.repository.search.BasicOperation.*;
 ```
 
 ```java
-UserSpecification validFromQuery = new UserSpecification("validFrom", ComparableOperation.GREATER_THAN_OR_EQUAL_TO, OffsetDateTime.now());
+UserSpecification validFromQuery = new UserSpecification("validFrom", GREATER_THAN_OR_EQUAL_TO, OffsetDateTime.now());
 
-UserSpecification usernameQuery = new UserSpecification("username", BasicOperation.EQUAL_TO, "micheal");
+UserSpecification usernameQuery = new UserSpecification("username", EQUAL_TO, "micheal");
 
 List<User> foundUsers = repo.search(validFromQuery.or(usernameQuery), Pageable.of(0, 2, PageRequest.of(1, 2, Sort.Direction.ASC, "username")));
 ```
